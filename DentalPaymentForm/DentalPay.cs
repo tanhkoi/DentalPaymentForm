@@ -5,7 +5,7 @@ namespace DentalPayment
 {
     public partial class DentalPay : Form
     {
-
+        private ListViewItem selectedListViewItem;
 
         public DentalPay()
         {
@@ -25,16 +25,28 @@ namespace DentalPayment
             }
             return isOK;
         }
+
+        private void updateRow()
+        {
+            selectedListViewItem.SubItems[0].Text = txtTenKhach.Text;
+            selectedListViewItem.SubItems[1].Text = txtTongTien.Text;
+        }
         private void btnTinhTien_Click(object sender, EventArgs e)
         {
             if (checkNull() == false)
-            {
                 MessageBox.Show("Chua nhap du thong tin", "Thong bao");
-            }
             else
             {
                 txtTongTien.Text = TinhTien().ToString();
-                ghiThongTin();
+                if (selectedListViewItem != null)
+                {
+                    updateRow();
+                }
+                else
+                {
+                    ghiThongTin();
+                }
+
             }
         }
 
@@ -100,6 +112,31 @@ namespace DentalPayment
                 lblGiaChupHinhRang.Text = FormatNumberWithCommas(formData.Chuphinh);
                 lblGiaTramRang.Text = FormatNumberWithCommas(formData.TramRang) + "/cai";
 
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (selectedListViewItem != null)
+            {
+                txtTenKhach.Text = selectedListViewItem.SubItems[0].Text;
+                txtTongTien.Text = selectedListViewItem.SubItems[1].Text;
+            }
+            else
+            {
+                MessageBox.Show("Vui long chon mot dong truoc khi nhan Sua.");
+            }
+        }
+
+        private void lsvDanhSach_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (e.IsSelected)
+            {
+                selectedListViewItem = e.Item;
+            }
+            else
+            {
+                selectedListViewItem = null;
             }
         }
     }

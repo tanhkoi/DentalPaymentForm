@@ -49,6 +49,7 @@
             hoten = new ColumnHeader();
             tien = new ColumnHeader();
             btnSuaGiaTien = new Button();
+            btnSua = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTramRang).BeginInit();
             SuspendLayout();
@@ -229,6 +230,7 @@
             // lsvDanhSach
             // 
             lsvDanhSach.Columns.AddRange(new ColumnHeader[] { hoten, tien });
+            lsvDanhSach.FullRowSelect = true;
             lsvDanhSach.GridLines = true;
             lsvDanhSach.Location = new Point(617, 123);
             lsvDanhSach.Name = "lsvDanhSach";
@@ -236,6 +238,7 @@
             lsvDanhSach.TabIndex = 5;
             lsvDanhSach.UseCompatibleStateImageBehavior = false;
             lsvDanhSach.View = View.Details;
+            lsvDanhSach.ItemSelectionChanged += lsvDanhSach_ItemSelectionChanged;
             // 
             // hoten
             // 
@@ -257,11 +260,22 @@
             btnSuaGiaTien.UseVisualStyleBackColor = true;
             btnSuaGiaTien.Click += btnSuaGiaTien_Click;
             // 
+            // btnSua
+            // 
+            btnSua.Location = new Point(617, 469);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(112, 34);
+            btnSua.TabIndex = 11;
+            btnSua.Text = "Sua";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
+            // 
             // DentalPay
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1051, 538);
+            Controls.Add(btnSua);
             Controls.Add(btnSuaGiaTien);
             Controls.Add(lsvDanhSach);
             Controls.Add(btnThoat);
@@ -304,5 +318,6 @@
         private ColumnHeader hoten;
         private ColumnHeader tien;
         private Button btnSuaGiaTien;
+        private Button btnSua;
     }
 }
